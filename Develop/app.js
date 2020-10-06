@@ -18,8 +18,10 @@ const render = require("./lib/htmlRenderer");
 const init = async () =>{
     inquirer
     .prompt(questions)
-    .then(answers => {
-        // Use user feedback for... whatever!!
+    .then(answers =>{
+        if(!answers.add-more){
+            console.log("Done")
+        }
     })
     .catch(error => {
         if(error.isTtyError) {
