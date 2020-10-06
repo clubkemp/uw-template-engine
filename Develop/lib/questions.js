@@ -6,9 +6,37 @@ const questions = [
         choices: ["manager", "engineer", "intern", "quit"]
     },
     {
+        type:"input",
+        name:"name",
+        message: "What is the team member name?",
+        when: (answers) => answers.add=== true,
+    },
+    {
+        type:"input",
+        name:"id",
+        message: "What is the team member id?",
+        when: (answers) => answers.add=== true,
+    },
+    {
+        type:"input",
+        name: "email",
+        message: "What's your contact email?",
+        when: (answers) => answers.add=== true,
+        validate: function (email) {
+  
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+            if (valid) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    {
         type:"list",
         name:"role",
-        message: "Choose an action?",
+        message: "Choose a role:",
         choices: ["manager", "engineer", "intern"],
         when: (answers)=> answers.add === true
     },

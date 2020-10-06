@@ -19,9 +19,8 @@ const init = async () =>{
     inquirer
     .prompt(questions)
     .then(answers =>{
-        if(!answers.add-more){
-            console.log("Done")
-        }
+        //TODO: add in a recursive call to keep the inquirer running as long as answers.more == true
+        console.log(answers)
     })
     .catch(error => {
         if(error.isTtyError) {
