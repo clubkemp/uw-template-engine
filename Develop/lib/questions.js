@@ -1,9 +1,9 @@
 const questions = [
+    //confirm used to check 
     {
         type:"confirm",
         name:"add",
         message: "Add more?",
-        choices: ["manager", "engineer", "intern", "quit"]
     },
     {
         type:"input",
