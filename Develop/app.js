@@ -17,32 +17,37 @@ const render = require("./lib/htmlRenderer");
 
 const init = async () =>{
     //TODO: fill this will employees as the user is prompted
-    const employees = [];
-    
+    const employeeArray = [];
     const userInput = () =>{
         inquirer
         .prompt(questions)
         .then(answers =>{
             const {add, name, role, id, email, officeNumber, github, school } = answers
             if(add){
+                console.log("switching")
                 switch(role){
                     case "Manager":
-                        const worker = new Manager(name, id, email, officeNumber)
-                        employees.push(worker)
+                        const manager = new Manager(name, id, email, officeNumber)
+                        console.log(manager);
+                        employeeArray.push(manager)
                         break;
                     case "Engineer":
-                        const worker = new Engineer(name, id, email, officeNumber)
-                        employees.push(worker)
+                        const engineer = new Engineer(name, id, email, github)
+                        employeeArray.push(engineer)
                         break;
                     case "Intern":
-                        const worker = new Intern(name, id, email, officeNumber)
-                        employees.push(worker)
+                        const intern = new Intern(name, id, email, school)
+                        employeeArray.push(intern)
                         break;
                 }
+                console.log(employeeArray)
                 userInput();
             }else{
-                console.log("trying to fire render")
-                render(employees);
+                const html = render(employeeArray);
+                fs.writeFile("./output/team.html", html, (err) => {
+                    if (err) return console.log(err);
+                    console.log('generating html output');
+                  })
             }
         })
         .catch(error => {
