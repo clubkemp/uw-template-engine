@@ -1,11 +1,14 @@
 const path = require("path");
 const fs = require("fs");
 //TODO: will need to require in employee
+
 //setup the director to the html templates
 const templatesDir = path.resolve(__dirname, "../templates");
 
 //function that takes in employees
 const render = employees => {
+  console.log("I am renderer....I am running")
+  console.log(employees)
   //setup an empty array for the html to live in
   const html = [];
 
@@ -30,6 +33,7 @@ const render = employees => {
 };
 //each function below goes through the boilerplate html and replaces things with the replacePlaceholder function
 const renderManager = manager => {
+  console.log("render manager function")
   let template = fs.readFileSync(path.resolve(templatesDir, "manager.html"), "utf8");
   template = replacePlaceholders(template, "name", manager.getName());
   template = replacePlaceholders(template, "role", manager.getRole());
@@ -40,6 +44,7 @@ const renderManager = manager => {
 };
 
 const renderEngineer = engineer => {
+  console.log("render engineer function")
   let template = fs.readFileSync(path.resolve(templatesDir, "engineer.html"), "utf8");
   template = replacePlaceholders(template, "name", engineer.getName());
   template = replacePlaceholders(template, "role", engineer.getRole());
@@ -50,6 +55,7 @@ const renderEngineer = engineer => {
 };
 
 const renderIntern = intern => {
+  console.log("render intern function")
   let template = fs.readFileSync(path.resolve(templatesDir, "intern.html"), "utf8");
   template = replacePlaceholders(template, "name", intern.getName());
   template = replacePlaceholders(template, "role", intern.getRole());

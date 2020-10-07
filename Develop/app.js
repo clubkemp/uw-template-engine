@@ -16,19 +16,44 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 const init = async () =>{
-    inquirer
-    .prompt(questions)
-    .then(answers =>{
-        //TODO: add in a recursive call to keep the inquirer running as long as answers.more == true
-        console.log(answers)
-    })
-    .catch(error => {
-        if(error.isTtyError) {
-        // Prompt couldn't be rendered in the current environment
-        } else {
-        // Something else when wrong
-        }
-    });
+    //TODO: fill this will employees as the user is prompted
+    const employees = [];
+    
+    const userInput = () =>{
+        inquirer
+        .prompt(questions)
+        .then(answers =>{
+            const {add, name, role, id, email, officeNumber, github, school } = answers
+            if(add){
+                switch(role){
+                    case "Manager":
+                        const worker = new Manager(name, id, email, officeNumber)
+                        employees.push(worker)
+                        break;
+                    case "Engineer":
+                        const worker = new Engineer(name, id, email, officeNumber)
+                        employees.push(worker)
+                        break;
+                    case "Intern":
+                        const worker = new Intern(name, id, email, officeNumber)
+                        employees.push(worker)
+                        break;
+                }
+                userInput();
+            }else{
+                console.log("trying to fire render")
+                render(employees);
+            }
+        })
+        .catch(error => {
+            if(error.isTtyError) {
+            // Prompt couldn't be rendered in the current environment
+            } else {
+            // Something else when wrong
+            }
+        });
+    }
+    userInput();
 }
 init();
 
