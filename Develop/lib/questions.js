@@ -1,10 +1,11 @@
 const questions = [
-    //confirm used to check 
+    //confirm used to check if user is still adding users 
     {
         type:"confirm",
         name:"add",
         message: "Add more?",
     },
+    //when adding more ask the following 4 questions
     {
         type:"input",
         name:"name",
@@ -40,6 +41,7 @@ const questions = [
         choices: ["Manager", "Engineer", "Intern"],
         when: (answers)=> answers.add === true
     },
+    //based on the list chosen ask 1 of the following 3
     {
         type:"number",
         name:"officeNumber",
@@ -59,5 +61,5 @@ const questions = [
         when: (answers) => answers.role === "Intern",
     }
 ]
-
+//export for use in app.js
 module.exports = questions
