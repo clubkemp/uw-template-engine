@@ -16,6 +16,7 @@
   
   ## Usage
   decide if you want to add more team member. If yes, you will need to decide what kind of team member to add. Follow the prompts. Once team members are in place, exit out of the prompt by saying no to add more team members. You should now have a teams page in your output folder
+  ![screenshot](./Assets/example.JPG)
   
   ## Credits
   Thanks to the team at Trilogy for giving us tests to run on our classes and all the starter code for rendering the html
